@@ -22,16 +22,15 @@ const paddle = {
         this.pos.y = this.canvasElt.height - this.size.h - (this.size.h / 2);
         //
         this.move();
-        this.throwBullets();
     },
     update() {
+        console.log(this.bullets);
         this.edgeCollision();
         this.draw();
     },
     draw() {
         this.ctx.save();
         this.ctx.beginPath();
-        //this.ctx.translate();
         this.ctx.rect(this.pos.x, this.pos.y, this.size.w, this.size.h);
         this.ctx.fill();
         this.ctx.restore();
@@ -47,6 +46,14 @@ const paddle = {
             if (e.key === 'ArrowRight') {
                 this.pos.x += this.speed;
             }
+            //
+            if (e.key === ' ') {
+                this.bulletTimer++;
+                if (!(this.bulletTimer % this.bulletTimerTreshold))
+                    this.bullets.push(new Bullet());
+            } else {
+                this.bulletTimer = -1;
+            }
         })
     },
     edgeCollision() {
@@ -57,17 +64,9 @@ const paddle = {
             this.pos.x = this.canvasElt.width - this.size.w;
         }
     },
-    throwBullets(){
-        window.addEventListener('keydown', (e) => {
-            if (e.key === ' ') {
-                console.log('bulletsss')
-                this.bulletTimer++;
-                if (!(this.bulletTimer % this.bulletTimerTreshold))
-                    this.bullets.push(new Bullet());
-            } else {
-                this.bulletTimer = -1;
-            }
-        })
+    removeBullet(bullet){
+        const i = this.bullets.indexOf(bullet);
+        this.bullets.splice(i, 1)
     }
 }
 export default paddle;
