@@ -27,6 +27,9 @@ const main = {
         this.ctx.clearRect(0, 0, this.canvasElt.width, this.canvasElt.height);
         // TODO: add update here
         paddle.update();
+        paddle.bullets.forEach((bullet)=>{
+            bullet.update();
+        })
     }
 }
 main.init();

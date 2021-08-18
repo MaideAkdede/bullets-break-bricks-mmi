@@ -1,3 +1,5 @@
+import Bullet from "./Bullet";
+//
 const paddle = {
     speed: 4,
     pos: {
@@ -8,6 +10,10 @@ const paddle = {
         h: 25,
         w: 25,
     },
+    //
+    bulletTimer: -1,
+    bulletTimerTreshold: 5,
+    bullets: [],
     init(ctx, canvasElt) {
         this.ctx = ctx;
         this.canvasElt = canvasElt;
@@ -16,6 +22,7 @@ const paddle = {
         this.pos.y = this.canvasElt.height - this.size.h - (this.size.h / 2);
         //
         this.move();
+        this.throwBullets();
     },
     update() {
         this.edgeCollision();
@@ -49,6 +56,18 @@ const paddle = {
         if (this.pos.x > this.canvasElt.width - this.size.w) {
             this.pos.x = this.canvasElt.width - this.size.w;
         }
+    },
+    throwBullets(){
+        window.addEventListener('keydown', (e) => {
+            if (e.key === ' ') {
+                console.log('bulletsss')
+                this.bulletTimer++;
+                if (!(this.bulletTimer % this.bulletTimerTreshold))
+                    this.bullets.push(new Bullet());
+            } else {
+                this.bulletTimer = -1;
+            }
+        })
     }
 }
 export default paddle;
