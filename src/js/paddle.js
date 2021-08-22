@@ -12,7 +12,7 @@ const paddle = {
     },
     //
     bulletTimer: -1,
-    bulletTimerTreshold: 5,
+    bulletTimerTreshold: 1,
     bullets: [],
     init(ctx, canvasElt) {
         this.ctx = ctx;
@@ -24,7 +24,6 @@ const paddle = {
         this.move();
     },
     update() {
-        console.log(this.bullets);
         this.edgeCollision();
         this.draw();
     },
