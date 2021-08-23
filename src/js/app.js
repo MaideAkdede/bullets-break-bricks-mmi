@@ -5,7 +5,7 @@ const main = {
     ctx: null,
     canvasElt: null,
     bricks: [],
-    bricksCount: 5,
+    bricksCount: 20,
     init() {
         this.canvasElt = document.createElement('canvas');
         this.ctx = this.canvasElt.getContext('2d');
@@ -19,7 +19,7 @@ const main = {
         //
         paddle.init(this.ctx, this.canvasElt);
         //
-        for (let i = 0; i < this.bricksCount; i++) {
+       for (let i = 0; i < this.bricksCount; i++) {
             this.bricks.push(new Brick(main));
         }
         //
@@ -36,8 +36,8 @@ const main = {
             bullet.update();
         })
         //
-        this.bricks.forEach(circle=>{
-            circle.update()
+        this.bricks.forEach(brick=>{
+            brick.update()
         })
     }
 }
