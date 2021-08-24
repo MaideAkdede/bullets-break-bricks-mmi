@@ -12,7 +12,7 @@ export default class Bullet {
     }
 
     update() {
-        this.location.y -= this.speed;
+            this.location.y -= this.speed;
         if (this.location.y < 0) {
            paddle.removeBullet(this);
         }

@@ -1,11 +1,10 @@
 import paddle from "./paddle";
-import Brick from "./Brick";
+import brick from "./brick";
 
 const main = {
     ctx: null,
     canvasElt: null,
     bricks: [],
-    bricksCount: 20,
     init() {
         this.canvasElt = document.createElement('canvas');
         this.ctx = this.canvasElt.getContext('2d');
@@ -18,10 +17,7 @@ const main = {
         this.ctx.fillStyle = '#000';
         //
         paddle.init(this.ctx, this.canvasElt);
-        //
-       for (let i = 0; i < this.bricksCount; i++) {
-            this.bricks.push(new Brick(main));
-        }
+        brick.init(main);
         //
         this.animate();
     },
@@ -35,10 +31,7 @@ const main = {
         paddle.bullets.forEach((bullet)=>{
             bullet.update();
         })
-        //
-        this.bricks.forEach(brick=>{
-            brick.update()
-        })
+        brick.update();
     }
 }
 main.init();
