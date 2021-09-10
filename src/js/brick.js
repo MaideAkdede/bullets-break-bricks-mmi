@@ -2,7 +2,7 @@ import paddle from "./paddle";
 import Bullet from "./Bullet";
 
 const brick = {
-    row: 5,
+    row: 3,
     column: 5,
     width: 75,
     height: 20,

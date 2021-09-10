@@ -8,7 +8,7 @@ const main = {
     init() {
         this.canvasElt = document.createElement('canvas');
         this.ctx = this.canvasElt.getContext('2d');
-        document.body.insertAdjacentElement('afterbegin', this.canvasElt);
+        document.body.insertAdjacentElement('beforeend', this.canvasElt);
         //
         this.canvasElt.width = 600;
         this.canvasElt.height = 400;
